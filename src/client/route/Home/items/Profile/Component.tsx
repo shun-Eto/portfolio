@@ -13,7 +13,9 @@ import * as useStyles from "./_useStyles";
 import * as EnvTypes from "@src/types/environment";
 
 /*-*-*-*-* component props *-*-*-*-*/
-interface ComponentProps {}
+interface ComponentProps {
+	anchor: React.RefObject<HTMLDivElement>;
+}
 type Props = ComponentProps;
 interface ComnProps {}
 const Component: React.FC<Props> = (props) => {
@@ -21,6 +23,7 @@ const Component: React.FC<Props> = (props) => {
 	const {} = props;
 	//	states
 	//	styles
+	const classes = useStyles.Root({});
 
 	/*-*-*-*-* handlers *-*-*-*-*/
 
@@ -29,7 +32,7 @@ const Component: React.FC<Props> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<React.Fragment>
+		<div className={classes.Root} ref={props.anchor}>
 			{/*-*-*-*-* small *-*-*-*-*/}
 			<Hidden smUp>
 				<ItemSm {...comnProps} />
@@ -39,7 +42,7 @@ const Component: React.FC<Props> = (props) => {
 			<Hidden xsDown>
 				<ItemLg {...comnProps} />
 			</Hidden>
-		</React.Fragment>
+		</div>
 	);
 };
 
@@ -62,7 +65,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	const classes = useStyles.ItemLg({});
 
 	/*-*-*-*-* component *-*-*-*-*/
-	return <div></div>;
+	return <div className={classes.Item}>Profile</div>;
 };
 
 /*-*-*-*-* default *-*-*-*-*/
