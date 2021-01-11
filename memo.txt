@@ -1,0 +1,11 @@
+[ status code ]
+200 : OK
+204 : No Content
+400 : Bad Request
+401 : Unauthorized
+404 : Not Found
+
+[ heroku ]
+環境変数一覧 : heroku config
+環境変数の設定 : heroku config:set ENV_NAME=value ( available multi )
+環境変数の削除 : heroku config:unset ENV_NAME ( available multi )
