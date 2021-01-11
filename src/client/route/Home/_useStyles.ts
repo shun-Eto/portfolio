@@ -1,9 +1,10 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
-import {
-	basicStyles,
-	basicColors,
-} from "@src/client/assets/styles/basicStyles";
-import { colorPicker } from "@src/client/assets/styles/origStyles";
+
+//	modules
+import * as OrigStylesModule from "@src/client/assets/styles/origStyles";
+
+//	classes
+const origStylesClass = new OrigStylesModule.default();
 
 /*-*-*-*-* Root *-*-*-*-*/
 export const Root = (params: {}) =>

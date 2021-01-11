@@ -1,5 +1,7 @@
-/*-*-*-*-* basicColor *-*-*-*-*/
-const basicColor = {
+import { CSSProperties } from "@material-ui/core/styles/withStyles";
+
+/*-*-*-*-* colors *-*-*-*-*/
+const colors = {
 	/*-*-*-*-* brand colors *-*-*-*-*/
 	brandBlack: (opacity?: number) => {
 		return typeof opacity !== "number"
@@ -810,8 +812,8 @@ const basicColor = {
 	},
 };
 
-/*-*-*-*-* basicFontFami *-*-*-*-*/
-const basicFontFamily = {
+/*-*-*-*-* fontFamilies *-*-*-*-*/
+const fontFamilies = {
 	badScript: "'Bad Script', cursive",
 	"STIXGeneral-Regular": "STIXGeneral-Regular",
 	"STIXGeneral-Italic": "STIXGeneral-Italic",
@@ -819,15 +821,96 @@ const basicFontFamily = {
 	STIXSizeTwoSym: "STIXSizeTwoSym",
 };
 
-/*-*-*-*-* colorPicker *-*-*-*-*/
-export function colorPicker(
-	color: keyof typeof basicColor,
-	opacity?: number
-): string {
-	return basicColor[color](opacity);
-}
+/*-*-*-*-* fontSizes *-*-*-*-*/
+const fortSizes = {
+	"fontSize-xl": 28,
+	"fontSize-lg": 21,
+	"fontSize-md": 18,
+	fontSize: 16,
+	"fontSize-sm": 13.5,
+	"fontSize-xs": 10.5,
+	errorFontSize: 10.5,
+};
 
-/*-*-*-*-* fontFamiPicker *-*-*-*-*/
-export function fontFamiPicker(key: keyof typeof basicFontFamily): string {
-	return basicFontFamily[key];
+/*-*-*-*-* styles *-*-*-*-*/
+const styles = {
+	letterSpacing: "0.1em",
+	lineHeight: "1.8px",
+	fontFamily: "Google Sans Display",
+	paleBorder: "solid 1px #d2d2d2",
+	tableBorder: "solid 1px rgba(244,244,244,1)",
+	"transform-transition": "transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+};
+
+/*-*-*-*-* class *-*-*-*-*/
+export default class {
+	/*-*-*-*-* Pickers *-*-*-*-*/
+	colorPicker(color: keyof typeof colors, opacity?: number): string {
+		return colors[color](opacity);
+	}
+	fontFamiPicker(key: keyof typeof fontFamilies): string {
+		return fontFamilies[key];
+	}
+	fontSizePicker(size: keyof typeof fortSizes): number {
+		return fortSizes[size];
+	}
+	stylesPicker(style_key: keyof typeof styles): string {
+		return styles[style_key];
+	}
+
+	/*-*-*-*-* format styles *-*-*-*-*/
+	scrollVisibled(args: {
+		scrollX?: boolean;
+		scrollY?: boolean;
+	}): CSSProperties {
+		const overflowX = args.scrollX ? "scroll" : "hidden";
+		const overflowY = args.scrollY ? "scroll" : "hidden";
+		return {
+			overflowX,
+			overflowY,
+			"-ms-overflow-style": "none",
+			scrollbarWidth: "none",
+			"&::-webkit-scrollbar": {
+				display: "none",
+			},
+		};
+	}
+	ellipsis(): CSSProperties {
+		return {
+			whiteSpace: "nowrap",
+			overflowX: "hidden",
+			textOverflow: "ellipsis",
+		};
+	}
+	"ellipsis-multiLine"(lineNum: number): CSSProperties {
+		return {
+			whiteSpace: "pre-line",
+			display: "-webkit-box",
+			wordBreak: "break-all",
+			"-webkit-box-orient": "vertical",
+			"-webkit-line-clamp": lineNum,
+			overflow: "hidden",
+		};
+	}
+	btnColor(
+		base: { color: string; backgroundColor: string },
+		hover?: { color: string; backgroundColor: string }
+	): CSSProperties {
+		return {
+			backgroundColor: base.backgroundColor,
+			color: base.color,
+			"&:hover": {
+				backgroundColor: hover?.backgroundColor
+					? hover.backgroundColor
+					: base.backgroundColor,
+				color: hover?.color ? hover.color : base.color,
+			},
+		};
+	}
+	"textShadow-color"(color: string) {
+		return `0 0 10px ${color},0 0 10px ${color},0 0 10px ${color},0 0 10px ${color}`;
+	}
+	"textShadow-paleColor"(color: string) {
+		return `0 0 10px ${color}`;
+	}
 }
