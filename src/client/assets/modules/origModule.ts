@@ -4,7 +4,6 @@ import moment from "moment";
 import * as EnvModile from "@src/client/assets/modules/envModule";
 
 //	styles
-import { colorPicker } from "../styles/origStyles";
 
 //	assets
 

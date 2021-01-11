@@ -12,7 +12,6 @@ import Root from "./route/_Root/_index";
 
 //	styles
 import "./styles.css";
-import * as BasicStyleModule from "@src/client/assets/styles/basicStyles";
 
 //	FontAwesomeIcon
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -23,7 +22,6 @@ library.add(fab, fas, far);
 
 //	react datepicker
 import "react-datepicker/dist/react-datepicker.css";
-import { colorPicker } from "./assets/styles/origStyles";
 
 const history = (() => {
 	if (window.location.href.includes(".html")) {
@@ -38,15 +36,7 @@ ReactDOM.render(
 		<SnackbarProvider maxSnack={3}>
 			<ThemeProvider
 				theme={createMuiTheme({
-					palette: {
-						primary: {
-							main: colorPicker("brandBlack"),
-						},
-						secondary: {
-							main: "#5A7586",
-						},
-						error: { main: colorPicker("red-400") },
-					},
+					palette: { primary: {}, secondary: {}, error: {} },
 				})}
 			>
 				<Router history={history}>

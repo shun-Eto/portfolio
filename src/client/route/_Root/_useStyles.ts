@@ -1,13 +1,10 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
-import {
-	basicColors,
-	basicStyles,
-} from "@src/client/assets/styles/basicStyles";
-import { colorPicker } from "@src/client/assets/styles/origStyles";
 
 //	modules
+import * as OrigStylesModule from "@src/client/assets/styles/origStyles";
 
 //	classes
+const origStylesClass = new OrigStylesModule.default();
 
 /*-*-*-*-* Root *-*-*-*-*/
 export const Root = (params: {}) =>
@@ -17,7 +14,7 @@ export const Root = (params: {}) =>
 		return createStyles({
 			Root: {
 				height: "100%",
-				backgroundColor: colorPicker("brandWhite"),
+				backgroundColor: origStylesClass.colorPicker("brandWhite"),
 			},
 		});
 	})();
@@ -79,7 +76,7 @@ export const RootLg = (params: {}) =>
 				display: "flex",
 				flexDirection: "column",
 				minWidth: 0,
-				...basicStyles.scrollInVisible({ scrollY: true }),
+				...origStylesClass.scrollVisibled({ scrollY: true }),
 			},
 			"Root-body": {
 				flexGrow: 1,
