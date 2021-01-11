@@ -1,18 +1,23 @@
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-/********** reducers **********/
+/*-*-*-*-* reducers *-*-*-*-*/
+import * as RootReducer from "./reducers/RootReducer";
 
-/********** AppState **********/
-export interface AppState {}
+/*-*-*-*-* AppProps *-*-*-*-*/
+export interface AppStateProps {
+	root: RootReducer.StateProps;
+}
 
-/********** store **********/
+/*-*-*-*-* store *-*-*-*-*/
 const storeEnhancers =
-    (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+	(window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-    combineReducers<AppState>({}),
-    storeEnhancers(applyMiddleware(thunk))
+	combineReducers<AppStateProps>({
+		root: RootReducer.default,
+	}),
+	storeEnhancers(applyMiddleware(thunk))
 );
 
-/********** default **********/
+/*-*-*-*-* default *-*-*-*-*/
 export default store;

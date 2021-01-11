@@ -1,4 +1,2 @@
 node_modules
-webpack
-(Backup)
-(Component)
+./src/client/assets/(Component)

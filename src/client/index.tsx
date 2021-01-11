@@ -1,28 +1,59 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { Router } from "react-router";
+import { Router } from "react-router-dom";
 import Store from "./redux/store";
-import { createBrowserHistory as createHistory } from "history";
+import { createBrowserHistory, createHashHistory } from "history";
+import { SnackbarProvider } from "notistack";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 //	components
-import Root from "./components/_Root/_index";
+import Root from "./route/_Root/_index";
 
-//	FontAwesomeIconz
+//	styles
+import "./styles.css";
+import * as BasicStyleModule from "@src/client/assets/styles/basicStyles";
+
+//	FontAwesomeIcon
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fab, fas, far);
 
-const history = createHistory();
-const windowSize = window.innerWidth;
+//	react datepicker
+import "react-datepicker/dist/react-datepicker.css";
+import { colorPicker } from "./assets/styles/origStyles";
+
+const history = (() => {
+	if (window.location.href.includes(".html")) {
+		return createHashHistory();
+	} else {
+		return createBrowserHistory();
+	}
+})();
 
 ReactDOM.render(
-    <Provider store={Store}>
-        <Router history={history}>
-            <Root></Root>
-        </Router>
-    </Provider>,
-    document.getElementById("root") as HTMLElement
+	<Provider store={Store}>
+		<SnackbarProvider maxSnack={3}>
+			<ThemeProvider
+				theme={createMuiTheme({
+					palette: {
+						primary: {
+							main: colorPicker("brandBlack"),
+						},
+						secondary: {
+							main: "#5A7586",
+						},
+						error: { main: colorPicker("red-400") },
+					},
+				})}
+			>
+				<Router history={history}>
+					<Root />
+				</Router>
+			</ThemeProvider>
+		</SnackbarProvider>
+	</Provider>,
+	document.getElementById("root") as HTMLElement
 );
