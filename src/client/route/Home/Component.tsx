@@ -131,10 +131,10 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	return (
 		<div className={classes.Home} ref={anchor} onScroll={handleOnScroll_root}>
 			{/* Philosophy */}
-			<Philosophy anchor={anchorPhilosophy} />
+			<Philosophy lang={lang} anchor={anchorPhilosophy} />
 
 			{/* Profile */}
-			<Profile anchor={anchorProfile} />
+			<Profile lang={lang} anchor={anchorProfile} />
 		</div>
 	);
 };

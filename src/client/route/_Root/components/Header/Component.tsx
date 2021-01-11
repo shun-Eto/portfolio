@@ -50,7 +50,7 @@ const Component: React.FC<Props> = (props) => {
 					</div>
 					<div className={classes.menu}>
 						<IconButton>
-							<FontAwesomeIcon size="lg" icon={["fas", "bars"]} />
+							<FontAwesomeIcon size="lg" icon={["fas", "align-right"]} />
 						</IconButton>
 					</div>
 				</Container>

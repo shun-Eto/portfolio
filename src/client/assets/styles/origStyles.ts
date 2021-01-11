@@ -814,6 +814,7 @@ const colors = {
 
 /*-*-*-*-* fontFamilies *-*-*-*-*/
 const fontFamilies = {
+	basic: "OptimaLTPro-Roman,Ryumin Regular KL,serif",
 	badScript: "'Bad Script', cursive",
 	"STIXGeneral-Regular": "STIXGeneral-Regular",
 	"STIXGeneral-Italic": "STIXGeneral-Italic",
@@ -823,13 +824,12 @@ const fontFamilies = {
 
 /*-*-*-*-* fontSizes *-*-*-*-*/
 const fortSizes = {
-	"fontSize-xl": 28,
-	"fontSize-lg": 21,
-	"fontSize-md": 18,
-	fontSize: 16,
-	"fontSize-sm": 13.5,
-	"fontSize-xs": 10.5,
-	errorFontSize: 10.5,
+	xl: 28,
+	lg: 21,
+	md: 18,
+	basic: 16,
+	sm: 13.5,
+	xs: 10.5,
 };
 
 /*-*-*-*-* styles *-*-*-*-*/
@@ -912,5 +912,9 @@ export default class {
 	}
 	"textShadow-paleColor"(color: string) {
 		return `0 0 10px ${color}`;
+	}
+	boxShadow(color: string): string {
+		const px = "40px";
+		return `inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color}`;
 	}
 }
