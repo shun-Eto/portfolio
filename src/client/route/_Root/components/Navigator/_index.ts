@@ -4,24 +4,27 @@ import { Dispatch } from "redux";
 import { AppStateProps } from "@src/client/redux/store";
 
 //	actions
+import * as HomeAction from "@src/client/redux/actions/homeAction";
 import * as RootAction from "@src/client/redux/actions/rootAction";
 
 //	reducers
+import * as HomeReducer from "@src/client/redux/reducers/homeReducer";
 
 /* * * * * props * * * * */
 const mapStateToProps = (state: AppStateProps) => {
 	return {
 		root: state.root,
+		home: state.home,
 	};
 };
 
 /* * * * * dispatch * * * * */
-type DispatchProps = RootAction.Update_Navigator;
+type DispatchProps = HomeAction.Update_Navigator;
 const mapDispatchToProps = (dispatch: Dispatch<DispatchProps>) => {
 	return {
 		rootActions: {
-			update_navigator: (nav: string) => {
-				return dispatch(RootAction.update_navigator(nav));
+			update_navigator: (navigator: string) => {
+				dispatch(RootAction.update_navigator(navigator));
 			},
 		},
 	};

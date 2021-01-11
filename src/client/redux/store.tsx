@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 
 /*-*-*-*-* reducers *-*-*-*-*/
 import * as RootReducer from "./reducers/RootReducer";
+import * as HomeReducer from "./reducers/homeReducer";
 
 /*-*-*-*-* AppProps *-*-*-*-*/
 export interface AppStateProps {
 	root: RootReducer.StateProps;
+	home: HomeReducer.StateProps;
 }
 
 /*-*-*-*-* store *-*-*-*-*/
@@ -15,6 +17,7 @@ const storeEnhancers =
 const store = createStore(
 	combineReducers<AppStateProps>({
 		root: RootReducer.default,
+		home: HomeReducer.default,
 	}),
 	storeEnhancers(applyMiddleware(thunk))
 );

@@ -6,11 +6,15 @@ import {
 	Switch,
 } from "react-router-dom";
 
+//	components
+import Navigator from "./components/Navigator/_index";
+import Header from "./components/Header/_index";
+
 //	route components
 import Home from "@src/client/route/Home/_index";
 
 //	materials
-import { Divider, Hidden, Toolbar } from "@material-ui/core";
+import { Container, Divider, Hidden, Toolbar } from "@material-ui/core";
 
 //	modules
 
@@ -102,7 +106,23 @@ const RootLg: React.FC<ComnProps> = (props) => {
 	const classes = useStyles.RootLg({});
 
 	/*-*-*-*-* component *-*-*-*-*/
-	return <div className={classes.Root}>{props.children}</div>;
+	return (
+		<div className={classes.Root}>
+			<Header />
+			<Container maxWidth="md" className={classes["container"]}>
+				<Toolbar />
+
+				{/* contents */}
+				<div className={classes.contents}>
+					{/*-*-*-*-* children *-*-*-*-*/}
+					{props.children}
+
+					{/*-*-*-*-* Navigator *-*-*-*-*/}
+					<Navigator />
+				</div>
+			</Container>
+		</div>
+	);
 };
 
 /*-*-*-*-* default *-*-*-*-*/

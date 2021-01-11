@@ -34,11 +34,7 @@ const history = (() => {
 ReactDOM.render(
 	<Provider store={Store}>
 		<SnackbarProvider maxSnack={3}>
-			<ThemeProvider
-				theme={createMuiTheme({
-					palette: { primary: {}, secondary: {}, error: {} },
-				})}
-			>
+			<ThemeProvider theme={createMuiTheme({ palette: {} })}>
 				<Router history={history}>
 					<Root />
 				</Router>

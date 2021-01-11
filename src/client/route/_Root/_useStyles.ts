@@ -26,24 +26,8 @@ export const RootSm = (params: {}) =>
 
 		return createStyles({
 			Root: {
-				display: "flex",
-				flexDirection: "column",
 				height: "100%",
 			},
-
-			/*-*-*-*-* header *-*-*-*-*/
-			"Root-header": {},
-
-			/*-*-*-*-* nav *-*-*-*-*/
-			"Root-nav": {},
-
-			/*-*-*-*-* body *-*-*-*-*/
-			"Root-body": {
-				flexGrow: 1,
-			},
-
-			/*-*-*-*-* actions *-*-*-*-*/
-			"Root-actions": {},
 		});
 	})();
 
@@ -55,31 +39,18 @@ export const RootLg = (params: {}) =>
 		return createStyles({
 			Root: {
 				height: "100%",
-				display: "flex",
-				flexDirection: "row",
 			},
 
-			/*-*-*-*-* header *-*-*-*-*/
-			"Root-header": {
-				width: 0,
-			},
-
-			/*-*-*-*-* actions *-*-*-*-*/
-			"Root-actions": {},
-
-			/*-*-*-*-* nav *-*-*-*-*/
-			"Root-nav": {},
-
-			/*-*-*-*-* body *-*-*-*-*/
-			"Root-container": {
-				flexGrow: 1,
+			container: {
+				height: "100%",
 				display: "flex",
 				flexDirection: "column",
-				minWidth: 0,
-				...origStylesClass.scrollVisibled({ scrollY: true }),
 			},
-			"Root-body": {
+
+			contents: {
 				flexGrow: 1,
+				position: "relative",
+				overflow: "hidden",
 			},
 		});
 	})();
