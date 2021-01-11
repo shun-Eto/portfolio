@@ -14,6 +14,7 @@ export interface Environment {
 	token: string;
 	lang: keyof EnvTypes.Languages;
 	navigator: string;
+	footer: boolean;
 	device: {
 		sizeType: "sp" | "pc";
 	};
@@ -23,6 +24,7 @@ const initEnvironment: Environment = {
 	token: localStorage.getItem("token") || "",
 	lang: "jp",
 	navigator: "",
+	footer: false,
 	device: {
 		sizeType: navigator.userAgent.match(/iphone|ipad|ipod|android/i)
 			? "sp"
@@ -49,6 +51,7 @@ const reducer = (
 ) => {
 	switch (action.type) {
 		/*-*-*-*-* actions **-*-*-*-*/
+		//	update_navigator
 		case RootAction.types.update_navigator:
 			return {
 				...state,
@@ -57,6 +60,16 @@ const reducer = (
 					navigator: action.payload.navigator,
 				},
 			};
+		//
+		case RootAction.types.update_footer:
+			return {
+				...state,
+				env: {
+					...state.env,
+					footer: action.payload.footer,
+				},
+			};
+
 		/*-*-*-*-* default **-*-*-*-*/
 		default:
 			return state;

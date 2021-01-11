@@ -16,12 +16,15 @@ const mapStateToProps = (state: AppStateProps) => {
 };
 
 /* * * * * dispatch * * * * */
-type DispatchProps = RootAction.Update_Navigator;
+type DispatchProps = RootAction.Update_Navigator | RootAction.Update_Footer;
 const mapDispatchToProps = (dispatch: Dispatch<DispatchProps>) => {
 	return {
 		rootActions: {
 			update_navigator: (nav: string) => {
 				return dispatch(RootAction.update_navigator(nav));
+			},
+			update_footer: (active: boolean) => {
+				return dispatch(RootAction.update_footer(active));
 			},
 		},
 	};

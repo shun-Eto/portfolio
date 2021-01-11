@@ -9,6 +9,7 @@ import {
 //	components
 import Navigator from "./components/Navigator/_index";
 import Header from "./components/Header/_index";
+import Footer from "./components/Footer/_index";
 
 //	route components
 import Home from "@src/client/route/Home/_index";
@@ -120,6 +121,8 @@ const RootLg: React.FC<ComnProps> = (props) => {
 					{/*-*-*-*-* Navigator *-*-*-*-*/}
 					<Navigator />
 				</div>
+
+				<Footer />
 			</Container>
 		</div>
 	);
