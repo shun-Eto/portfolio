@@ -45,6 +45,7 @@ export const RootLg = (params: {}) =>
 				height: "100%",
 				display: "flex",
 				flexDirection: "column",
+				position: "relative",
 			},
 
 			contents: {

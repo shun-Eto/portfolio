@@ -33,12 +33,25 @@ export const Root = (params: {}) =>
 				flexGrow: 1,
 				lineHeight: 0,
 			},
+			"logo-btn": {
+				padding: theme.spacing(1),
+				borderRadius: theme.shape.borderRadius,
+			},
 			"logo-img": {
 				display: "inline-block",
 				maxHeight: 40,
 			},
 
+			/*-*-*-*-* menu *-*-*-*-*/
 			menu: {},
+			"menu-btn-faIcon": {
+				color: origStylesClass.colorPicker("brandBlack"),
+			},
+			"menu-icon": {
+				minWidth: 40,
+			},
+			"menu-icon-faIcon": {},
+			"menu-text": {},
 		});
 	})();
 

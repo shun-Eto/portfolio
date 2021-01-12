@@ -31,6 +31,7 @@ export interface MenuItem {
 	abbrevation?: Languages;
 	theme?: Theme;
 	list?: MenuItem[];
+	pathname?: string;
 	onClick?: () => void;
 }
 

@@ -9,7 +9,7 @@ import Philosophy from "./items/Philosophy/Component";
 import Profile from "./items/Profile/Component";
 
 //	materials
-import { Hidden } from "@material-ui/core";
+import { Fade, Hidden } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //	actions
@@ -31,6 +31,7 @@ interface OwnProps extends RouteComponentProps {
 	//	actions
 	rootActions: {
 		update_navigator: typeof RootAction.update_navigator;
+		update_footer: typeof RootAction.update_footer;
 	};
 }
 interface ComponentProps {}
@@ -39,7 +40,8 @@ interface ComnProps {
 	lang: keyof EnvTypes.Languages;
 	navigator: string;
 	//	handlers
-	onChanage_navigator: (nav: string) => void;
+	onChange_navigator: (nav: string) => void;
+	onChange_footer: (active: boolean) => void;
 }
 const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
@@ -56,8 +58,11 @@ const Component: React.FC<Props> = (props) => {
 	const comnProps: ComnProps = {
 		lang,
 		navigator,
-		onChanage_navigator: (nav: string) =>
+		//	handlers
+		onChange_navigator: (nav: string) =>
 			props.rootActions.update_navigator(nav),
+		onChange_footer: (active: boolean) =>
+			props.rootActions.update_footer(active),
 	};
 
 	/*-*-*-*-* component *-*-*-*-*/
@@ -90,11 +95,12 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
 	const { navigator, lang } = props;
 	//	states
+	const menuCount = 2;
 	const [height, setHeight] = React.useState(0);
-	const [scroll, setScroll] = React.useState(0);
-	const [targetId, setTargetId] = React.useState<"philosophy" | "profile">(
-		"philosophy"
-	);
+	//	memo
+	const endHeight = React.useMemo(() => {
+		return height * (menuCount - 1) - 100;
+	}, [height, menuCount]);
 	//	anchors
 	const anchor = React.useRef<HTMLDivElement>(null);
 	const anchorPhilosophy = React.useRef<HTMLDivElement>(null);
@@ -106,17 +112,20 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollTop = e.currentTarget.scrollTop;
 		if (scrollTop === 0 && navigator !== "philosophy") {
-			props.onChanage_navigator("philosophy");
+			props.onChange_navigator("philosophy");
 		} else if (scrollTop === height && navigator !== "profile") {
-			props.onChanage_navigator("profile");
+			props.onChange_navigator("profile");
 		}
+
+		const end = endHeight <= scrollTop && scrollTop <= height;
+		props.onChange_footer(end);
 	};
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
 	//	anchor
 	React.useEffect(() => {
 		if (anchor.current) setHeight(anchor.current.clientHeight);
-		props.onChanage_navigator("philosophy");
+		props.onChange_navigator("philosophy");
 	}, [anchor]);
 	//	navigator
 	React.useEffect(() => {
@@ -126,16 +135,22 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 			anchorProfile.current.scrollIntoView(true);
 		}
 	}, [navigator]);
+	//	endHeight
+	React.useEffect(() => {
+		console.log("endHeight", endHeight);
+	}, [endHeight]);
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<div className={classes.Home} ref={anchor} onScroll={handleOnScroll_root}>
-			{/* Philosophy */}
-			<Philosophy anchor={anchorPhilosophy} />
+		<Fade in={true}>
+			<div className={classes.Home} ref={anchor} onScroll={handleOnScroll_root}>
+				{/* Philosophy */}
+				<Philosophy lang={lang} anchor={anchorPhilosophy} />
 
-			{/* Profile */}
-			<Profile anchor={anchorProfile} />
-		</div>
+				{/* Profile */}
+				<Profile lang={lang} anchor={anchorProfile} />
+			</div>
+		</Fade>
 	);
 };
 

@@ -39,6 +39,49 @@ export const ItemLg = (params: {}) =>
 		return createStyles({
 			Item: {
 				height: "100%",
+				display: "flex",
+				flexDirection: "row",
+				alignItems: "center",
+				justifyContent: "center",
+			},
+
+			container: {
+				position: "relative",
+				lineHeight: 0,
+				"&:after": {
+					position: "absolute",
+					top: 0,
+					left: 0,
+					content: `' '`,
+					height: "100%",
+					width: "100%",
+					boxShadow: origStylesClass.boxShadow(
+						origStylesClass.colorPicker("brandWhite")
+					),
+				},
+			},
+			"container-img": {
+				display: "inline-block",
+				width: "100%",
+				objectFit: "cover",
+				position: "relative",
+				minHeight: "50vh",
+			},
+			"container-label": {
+				position: "absolute",
+				display: "inline-block",
+				width: "100%",
+				left: 0,
+				bottom: 0,
+				zIndex: 0,
+				padding: theme.spacing(0, 6, 5, 6),
+				letterSpacing: 1.3,
+				fontSize: origStylesClass.fontSizePicker("lg"),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
+				color: origStylesClass.colorPicker("brandWhite"),
+				textShadow: origStylesClass["textShadow-color"](
+					origStylesClass.colorPicker("brandBlack")
+				),
 			},
 		});
 	})();

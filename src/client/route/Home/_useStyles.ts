@@ -25,6 +25,7 @@ export const HomeLg = (params: {}) =>
 			Home: {
 				height: "100%",
 				scrollBehavior: "smooth",
+				padding: theme.spacing(0, 3),
 				...origStylesClass.scrollVisibled({ scrollY: true }),
 			},
 		});
