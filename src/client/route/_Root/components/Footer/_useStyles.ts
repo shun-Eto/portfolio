@@ -26,15 +26,58 @@ export const Root = (params: {}) =>
 				left: 0,
 			},
 
-			text: {
+			/*-*-*-*-* menu *-*-*-*-*/
+			menu: {
+				display: "flex",
+				flexDirection: "row",
+				alignItems: "center",
+				justifyContent: "center",
+				margin: theme.spacing(2, 0, 1.5),
+			},
+			"menu-btn": {
+				padding: theme.spacing(0, 1),
+				borderRadius: theme.shape.borderRadius,
+				fontSize: origStylesClass.fontSizePicker("basic"),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
+			},
+			"menu-divider": {
+				margin: theme.spacing(0, 2),
+			},
+
+			/*-*-*-*-* copyright *-*-*-*-*/
+			copyright: {
 				textAlign: "center",
 				lineHeight: 1,
-				margin: theme.spacing(2, 0),
-				letterSpacing: 1.3,
+				margin: theme.spacing(1, 0),
+				letterSpacing: 1.1,
+				color: origStylesClass.colorPicker("gray-800"),
+				fontSize: origStylesClass.fontSizePicker("sm"),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
 			},
-			"text-faIcon": {
+			"copyright-faIcon": {
 				margin: theme.spacing(0, 1),
 				fontFamily: origStylesClass.fontFamiPicker("basic"),
+			},
+
+			/*-*-*-*-* private *-*-*-*-*/
+			private: {
+				display: "flex",
+				flexDirection: "row",
+				alignItems: "center",
+				justifyContent: "center",
+				fontSize: origStylesClass.fontSizePicker("xs"),
+				letterSpacing: 1.2,
+				margin: theme.spacing(1.5, 0, 2),
+			},
+			"private-faIcon": {
+				marginRight: theme.spacing(1),
+			},
+			"private-link": {
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
+				color: origStylesClass.colorPicker("blue-900"),
+			},
+			"private-divider": {
+				margin: theme.spacing(0, 1),
 			},
 		});
 	})();

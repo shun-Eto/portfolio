@@ -43,7 +43,6 @@ export const ItemLg = (params: {}) =>
 				flexDirection: "row",
 				alignItems: "center",
 				justifyContent: "center",
-				padding: theme.spacing(0, 8),
 			},
 
 			container: {
@@ -74,7 +73,7 @@ export const ItemLg = (params: {}) =>
 				width: "100%",
 				left: 0,
 				bottom: 0,
-				zIndex: 1,
+				zIndex: 0,
 				padding: theme.spacing(0, 6, 5, 6),
 				letterSpacing: 1.3,
 				fontSize: origStylesClass.fontSizePicker("lg"),

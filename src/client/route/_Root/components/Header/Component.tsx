@@ -5,8 +5,21 @@ import * as H from "history";
 //	components
 
 //	materials
-import { AppBar, Container, IconButton, Toolbar } from "@material-ui/core";
+import {
+	AppBar,
+	ButtonBase,
+	Container,
+	IconButton,
+	ListItemIcon,
+	ListItemText,
+	Menu,
+	MenuItem,
+	Toolbar,
+} from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+//	modules
+import * as ListModule from "../../modules/listModule";
 
 //	actions
 import * as RootAction from "@src/client/redux/actions/rootAction";
@@ -17,11 +30,14 @@ import * as RootReducer from "@src/client/redux/reducers/rootReducer";
 //	styles
 import * as useStyles from "./_useStyles";
 
-//	asset images
-import logo from "@src/client/assets/images/logo.png";
+//	assets
+import IMG_logo from "@src/client/assets/images/logo.png";
 
 //	types
 import * as EnvTypes from "@src/types/environment";
+
+//	classes
+const listClass = new ListModule.default();
 
 /*-*-*-*-* component props *-*-*-*-*/
 interface OwnProps extends RouteComponentProps {
@@ -40,10 +56,19 @@ const Component: React.FC<Props> = (props) => {
 	const { root } = props;
 	const { lang } = root.env;
 	//	states
+	const [open, setOpen] = React.useState(false);
+	const anchor = React.useRef<HTMLButtonElement>(null);
 	//	styles
 	const classes = useStyles.Root({});
+	//	lists
+	const headerMenu = listClass.headerMenu;
 
 	/*-*-*-*-* handlers *-*-*-*-*/
+	//	handleOnClick_menuItem
+	const handleOnClick_menuItem = (pathname?: string) => {
+		setOpen(false);
+		if (pathname) props.history.push(pathname);
+	};
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
 
@@ -52,13 +77,59 @@ const Component: React.FC<Props> = (props) => {
 		<AppBar className={classes.Root}>
 			<Toolbar>
 				<Container maxWidth="md" className={classes.container}>
+					{/* logo */}
 					<div className={classes.logo}>
-						<img src={logo} alt="logo" className={classes["logo-img"]} />
+						<ButtonBase
+							className={classes["logo-btn"]}
+							//	handlers
+							onClick={() => props.history.push("/")}
+						>
+							<img src={IMG_logo} alt="logo" className={classes["logo-img"]} />
+						</ButtonBase>
 					</div>
+
+					{/* menu */}
 					<div className={classes.menu}>
-						<IconButton onClick={() => props.rootActions.update_footer(true)}>
-							<FontAwesomeIcon size="lg" icon={["fas", "align-right"]} />
+						{/* menu button */}
+						<IconButton
+							ref={anchor}
+							//	handlers
+							onClick={() => setOpen(true)}
+						>
+							<FontAwesomeIcon
+								size="lg"
+								icon={["fas", "align-right"]}
+								className={classes["menu-btn-faIcon"]}
+							/>
 						</IconButton>
+
+						{/* menu */}
+						<Menu
+							open={open}
+							getContentAnchorEl={null}
+							anchorEl={anchor.current}
+							anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+							transformOrigin={{ vertical: "top", horizontal: "center" }}
+							//	handlers
+							onClose={() => setOpen(false)}
+						>
+							{headerMenu.map((item, index) => (
+								<MenuItem
+									key={index}
+									onClick={() => handleOnClick_menuItem(item.pathname)}
+								>
+									{item.faIcon && (
+										<ListItemIcon className={classes["menu-icon"]}>
+											<FontAwesomeIcon
+												{...item.faIcon}
+												className={classes["menu-icon-faIcon"]}
+											/>
+										</ListItemIcon>
+									)}
+									<ListItemText>{item.label[lang]}</ListItemText>
+								</MenuItem>
+							))}
+						</Menu>
 					</div>
 				</Container>
 			</Toolbar>

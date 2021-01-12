@@ -43,7 +43,6 @@ export const ItemLg = (params: {}) =>
 				flexDirection: "row",
 				alignItems: "center",
 				justifyContent: "center",
-				padding: theme.spacing(0, 8),
 			},
 
 			container: {
@@ -90,7 +89,7 @@ export const ItemLg = (params: {}) =>
 				position: "absolute",
 				top: 0,
 				left: 0,
-				zIndex: 2,
+				zIndex: 0,
 			},
 		});
 	})();

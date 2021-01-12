@@ -9,7 +9,7 @@ import Philosophy from "./items/Philosophy/Component";
 import Profile from "./items/Profile/Component";
 
 //	materials
-import { Hidden } from "@material-ui/core";
+import { Fade, Hidden } from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //	actions
@@ -142,13 +142,15 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<div className={classes.Home} ref={anchor} onScroll={handleOnScroll_root}>
-			{/* Philosophy */}
-			<Philosophy lang={lang} anchor={anchorPhilosophy} />
+		<Fade in={true}>
+			<div className={classes.Home} ref={anchor} onScroll={handleOnScroll_root}>
+				{/* Philosophy */}
+				<Philosophy lang={lang} anchor={anchorPhilosophy} />
 
-			{/* Profile */}
-			<Profile lang={lang} anchor={anchorProfile} />
-		</div>
+				{/* Profile */}
+				<Profile lang={lang} anchor={anchorProfile} />
+			</div>
+		</Fade>
 	);
 };
 
