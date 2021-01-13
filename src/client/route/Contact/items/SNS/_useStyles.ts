@@ -9,6 +9,17 @@ import * as EnvTypes from "@src/types/environment";
 //	classes
 const origStylesClass = new OrigStylesModule.default();
 
+export const Item = (params: {}) =>
+	makeStyles((theme: Theme) => {
+		const {} = params;
+
+		return createStyles({
+			Item: {
+				height: "100%",
+			},
+		});
+	})();
+
 /*-*-*-*-* small *-*-*-*-*/
 export const ItemSm = (params: {}) =>
 	makeStyles((theme: Theme) => {
@@ -25,7 +36,9 @@ export const ItemLg = (params: {}) =>
 		const {} = params;
 
 		return createStyles({
-			Item: {},
+			Item: {
+				height: "100%",
+			},
 		});
 	})();
 /*

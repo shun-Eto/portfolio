@@ -24,6 +24,7 @@ const Component: React.FC<Props> = (props) => {
 	const {} = props;
 	//	states
 	//	styles
+	const classes = useStyles.Item({});
 
 	/*-*-*-*-* handlers *-*-*-*-*/
 
@@ -32,7 +33,7 @@ const Component: React.FC<Props> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<React.Fragment>
+		<div className={classes.Item} ref={props.anchor}>
 			{/*-*-*-*-* small *-*-*-*-*/}
 			<Hidden smUp>
 				<ItemSm {...comnProps} />
@@ -42,7 +43,7 @@ const Component: React.FC<Props> = (props) => {
 			<Hidden xsDown>
 				<ItemLg {...comnProps} />
 			</Hidden>
-		</React.Fragment>
+		</div>
 	);
 };
 
@@ -65,7 +66,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	const classes = useStyles.ItemLg({});
 
 	/*-*-*-*-* component *-*-*-*-*/
-	return <div></div>;
+	return <div className={classes.Item}>SNS</div>;
 };
 
 /*-*-*-*-* default *-*-*-*-*/

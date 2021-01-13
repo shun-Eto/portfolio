@@ -12,6 +12,7 @@ import Root from "./route/_Root/_index";
 
 //	styles
 import "./styles.css";
+import * as OrigStylesModule from "@src/client/assets/styles/origStyles";
 
 //	FontAwesomeIcon
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -31,10 +32,19 @@ const history = (() => {
 	}
 })();
 
+//	classes
+const origStylesClass = new OrigStylesModule.default();
+
 ReactDOM.render(
 	<Provider store={Store}>
 		<SnackbarProvider maxSnack={3}>
-			<ThemeProvider theme={createMuiTheme({ palette: {} })}>
+			<ThemeProvider
+				theme={createMuiTheme({
+					palette: {
+						secondary: { main: origStylesClass.colorPicker("brown-800") },
+					},
+				})}
+			>
 				<Router history={history}>
 					<Root />
 				</Router>

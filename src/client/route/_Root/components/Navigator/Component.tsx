@@ -46,8 +46,9 @@ const Component: React.FC<Props> = (props) => {
 	const {} = props;
 	const { root } = props;
 	const { lang, navigator } = root.env;
+	const pathname = window.location.pathname;
 	//	states
-	const items: EnvTypes.MenuItem[] = [
+	const homeNavs: EnvTypes.MenuItem[] = [
 		{
 			id: "philosophy",
 			value: "philosophy",
@@ -61,8 +62,32 @@ const Component: React.FC<Props> = (props) => {
 			faIcon: { icon: ["fas", "user-graduate"] },
 		},
 	];
+	const contactNavs: EnvTypes.MenuItem[] = [
+		{
+			id: "message",
+			value: "message",
+			label: { jp: "Message", en: "Message" },
+			faIcon: { icon: ["fas", "paper-plane"] },
+		},
+		{
+			id: "sns",
+			value: "sns",
+			label: { jp: "SNS", en: "SNS" },
+			faIcon: { icon: ["fab", "battle-net"] },
+		},
+	];
+	const navItems = React.useMemo<EnvTypes.MenuItem[]>(() => {
+		switch (pathname) {
+			case "/":
+				return homeNavs;
+			case "/contact":
+				return contactNavs;
+			default:
+				return [];
+		}
+	}, [pathname]);
 	//	styles
-	const classes = useStyles.Root({ itemCount: items.length });
+	const classes = useStyles.Root({ itemCount: navItems.length });
 
 	/*-*-*-*-* handlers *-*-*-*-*/
 	const handleOnClick_navigator = (nav: string) => {
@@ -76,7 +101,7 @@ const Component: React.FC<Props> = (props) => {
 		<div className={classes.Root}>
 			<span className={classes.circle} />
 			<div className={classes.btns}>
-				{items.map((item, index) => (
+				{navItems.map((item, index) => (
 					<NavButton
 						key={index}
 						lang={lang}
