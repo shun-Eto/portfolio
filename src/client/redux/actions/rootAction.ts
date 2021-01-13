@@ -6,20 +6,20 @@ import * as EnvTypes from "@src/types/environment";
 
 /*-*-*-*-* action types *-*-*-*-*/
 export const types = {
-	update_navigator: "[ Root ] update_navigator",
+	update_navId: "[ Root ] update_navId",
 	update_footer: "[ Root ] update_footer",
 };
 
 /*-*-*-*-* methods *-*-*-*-*/
-//	update_navigator
-export interface Update_Navigator {
-	type: typeof types.update_navigator;
-	payload: { navigator: string };
+//	update_navId
+export interface Update_NavId {
+	type: typeof types.update_navId;
+	payload: { navId: string };
 }
-export function update_navigator(navigator: string): Update_Navigator {
+export function update_navId(navId: string): Update_NavId {
 	return {
-		type: types.update_navigator,
-		payload: { navigator },
+		type: types.update_navId,
+		payload: { navId },
 	};
 }
 //	update_footer
@@ -35,4 +35,4 @@ export function update_footer(active: boolean): Update_Footer {
 }
 
 /*-*-*-*-* ActionProps *-*-*-*-*/
-export type ActionProps = Update_Navigator & Update_Footer;
+export type ActionProps = Update_NavId & Update_Footer;

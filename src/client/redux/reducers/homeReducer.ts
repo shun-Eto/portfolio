@@ -6,12 +6,8 @@ export interface Status {}
 const initStatus: Status = {};
 export interface Data {}
 const initData: Data = {};
-export interface Environment {
-	navigator: string;
-}
-const initEnvironment: Environment = {
-	navigator: "",
-};
+export interface Environment {}
+const initEnvironment: Environment = {};
 
 export interface StateProps {
 	status: Status;
@@ -31,14 +27,6 @@ const reducer = (
 ) => {
 	switch (action.type) {
 		/*-*-*-*-* actions **-*-*-*-*/
-		case HomeAction.types.update_navigator:
-			return {
-				...state,
-				env: {
-					...state.env,
-					navigator: action.payload.navigator,
-				},
-			};
 
 		/*-*-*-*-* default **-*-*-*-*/
 		default:

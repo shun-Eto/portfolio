@@ -28,7 +28,7 @@ interface OwnProps extends RouteComponentProps {
 	root: RootReducer.StateProps;
 	//	actions
 	rootActions: {
-		update_navigator: typeof RootAction.update_navigator;
+		update_navId: typeof RootAction.update_navId;
 		update_footer: typeof RootAction.update_footer;
 	};
 }
@@ -36,15 +36,15 @@ interface ComponentProps {}
 type Props = OwnProps & ComponentProps;
 interface ComnProps {
 	lang: keyof EnvTypes.Languages;
-	navigator: string;
+	navId: string;
 	//	handlers
-	onChange_navigator: (nav: string) => void;
+	onChange_navId: (nav: string) => void;
 	onChange_footer: (active: boolean) => void;
 }
 const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
 	const { root } = props;
-	const { lang, navigator } = root.env;
+	const { lang, navId } = root.env;
 	//	states
 	//	styles
 
@@ -53,10 +53,9 @@ const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
 	const comnProps: ComnProps = {
 		lang,
-		navigator,
+		navId,
 		//	handlers
-		onChange_navigator: (nav: string) =>
-			props.rootActions.update_navigator(nav),
+		onChange_navId: (nav: string) => props.rootActions.update_navId(nav),
 		onChange_footer: (active: boolean) =>
 			props.rootActions.update_footer(active),
 	};
@@ -91,7 +90,7 @@ const ItemSm: React.FC<ComnProps> = (props) => {
 /*-*-*-*-* large *-*-*-*-*/
 const ItemLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const { navigator, lang } = props;
+	const { navId, lang } = props;
 	//	states
 	const menuCount = 2;
 	const [height, setHeight] = React.useState(0);
@@ -110,10 +109,10 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	//	handleOnScroll_root
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollTop = e.currentTarget.scrollTop;
-		if (scrollTop === 0 && navigator !== "message") {
-			props.onChange_navigator("message");
-		} else if (scrollTop === height && navigator !== "sns") {
-			props.onChange_navigator("sns");
+		if (scrollTop === 0 && navId !== "message") {
+			props.onChange_navId("message");
+		} else if (scrollTop === height && navId !== "sns") {
+			props.onChange_navId("sns");
 		}
 
 		const end = endHeight <= scrollTop && scrollTop <= height;
@@ -124,16 +123,16 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	//	anchor
 	React.useEffect(() => {
 		if (anchor.current) setHeight(anchor.current.clientHeight);
-		props.onChange_navigator("message");
+		props.onChange_navId("message");
 	}, [anchor]);
 	//	navigator
 	React.useEffect(() => {
-		if (navigator === "message" && anchorMessage.current) {
+		if (navId === "message" && anchorMessage.current) {
 			anchorMessage.current.scrollIntoView(true);
-		} else if (navigator === "sns" && anchorSNS.current) {
+		} else if (navId === "sns" && anchorSNS.current) {
 			anchorSNS.current.scrollIntoView(true);
 		}
-	}, [navigator]);
+	}, [navId]);
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (

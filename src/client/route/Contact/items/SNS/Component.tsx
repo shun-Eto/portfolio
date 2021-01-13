@@ -80,7 +80,8 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 					<SignleList
 						faIcon={{ icon: ["fab", "twitter"] }}
 						label="Twitter"
-						id="@Sopherre_1111"
+						id="Sopherre_1111"
+						type="twitter"
 					/>
 				</div>
 
@@ -89,7 +90,8 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 					<SignleList
 						faIcon={{ icon: ["fab", "instagram"] }}
 						label="Instagram"
-						id="@sopherre_1111"
+						id="sopherre_1111"
+						type="instagram"
 					/>
 				</div>
 
@@ -98,7 +100,8 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 					<SignleList
 						faIcon={{ icon: ["fab", "github"] }}
 						label="GitHub"
-						id="@shun-Eto"
+						id="shun-Eto"
+						type="github"
 					/>
 				</div>
 
@@ -108,6 +111,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 						faIcon={{ icon: ["far", "envelope"] }}
 						label="Email"
 						id="shun.prog0830@gmail.com"
+						type="email"
 					/>
 				</div>
 
@@ -138,16 +142,56 @@ interface SignleListProps {
 	faIcon: FontAwesomeIconProps;
 	label: string;
 	id: string;
+	type: "link" | "email" | "twitter" | "instagram" | "github";
 }
 const SignleList: React.FC<SignleListProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const { faIcon, label, id } = props;
+	const { faIcon, label, id, type } = props;
+	const labelId = React.useMemo(() => {
+		switch (type) {
+			case "twitter":
+			case "instagram":
+			case "github":
+				return `@${id}`;
+			default:
+				return id;
+		}
+	}, [id]);
 	//	styles
 	const classes = useStyles.SingleList({});
 
+	/*-*-*-*-* handlers *-*-*-*-*/
+	const handleOnClick_btn = () => {
+		const link = document.createElement("a");
+		switch (type) {
+			case "email":
+				link.setAttribute("href", `mailto:${id}`);
+				link.click();
+				break;
+			case "twitter":
+				link.setAttribute("href", `https://twitter.com/${id}`);
+				link.setAttribute("target", "_blank");
+				link.click();
+			case "instagram":
+				link.setAttribute("href", `https://www.instagram.com/${id}`);
+				link.setAttribute("target", "_blank");
+				link.click();
+			case "github":
+				link.setAttribute("href", `https://github.com/${id}`);
+				link.setAttribute("target", "_blank");
+			default:
+				link.click();
+				break;
+		}
+	};
+
 	/*-*-*-*-* compoent *-*-*-*-*/
 	return (
-		<ButtonBase className={classes["SingleList-btn"]}>
+		<ButtonBase
+			className={classes["SingleList-btn"]}
+			//	handlers
+			onClick={handleOnClick_btn}
+		>
 			<Paper className={classes.SingleList}>
 				{/* fb icon */}
 				<FontAwesomeIcon
@@ -167,7 +211,7 @@ const SignleList: React.FC<SignleListProps> = (props) => {
 				/>
 
 				{/* id */}
-				<Typography className={classes["SingleList-id"]}>{id}</Typography>
+				<Typography className={classes["SingleList-id"]}>{labelId}</Typography>
 			</Paper>
 		</ButtonBase>
 	);
