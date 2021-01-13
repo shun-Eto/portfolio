@@ -36,7 +36,7 @@ interface OwnProps extends RouteComponentProps {
 	root: RootReducer.StateProps;
 	//	actions
 	rootActions: {
-		update_navigator: typeof RootAction.update_navigator;
+		update_navId: typeof RootAction.update_navId;
 	};
 }
 interface ComponentProps {}
@@ -45,7 +45,7 @@ const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
 	const {} = props;
 	const { root } = props;
-	const { lang, navigator } = root.env;
+	const { lang, navId } = root.env;
 	const pathname = window.location.pathname;
 	//	states
 	const homeNavs: EnvTypes.MenuItem[] = [
@@ -90,8 +90,8 @@ const Component: React.FC<Props> = (props) => {
 	const classes = useStyles.Root({ itemCount: navItems.length });
 
 	/*-*-*-*-* handlers *-*-*-*-*/
-	const handleOnClick_navigator = (nav: string) => {
-		props.rootActions.update_navigator(nav);
+	const handleOnClick_navId = (nav: string) => {
+		props.rootActions.update_navId(nav);
 	};
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
@@ -106,9 +106,9 @@ const Component: React.FC<Props> = (props) => {
 						key={index}
 						lang={lang}
 						item={item}
-						navigator={navigator}
+						navId={navId}
 						//	handlers
-						onClick_navigator={() => handleOnClick_navigator(item.id)}
+						onClick_navId={() => handleOnClick_navId(item.id)}
 					/>
 				))}
 			</div>
@@ -120,17 +120,17 @@ const Component: React.FC<Props> = (props) => {
 interface NavButtonProps {
 	lang: keyof EnvTypes.Languages;
 	item: EnvTypes.MenuItem;
-	navigator: string;
+	navId: string;
 	//	hanlders
-	onClick_navigator: () => void;
+	onClick_navId: () => void;
 }
 const NavButton: React.FC<NavButtonProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const { lang, item, navigator } = props;
+	const { lang, item, navId } = props;
 	//	states
 	const [active, setActive] = React.useState<boolean>(false);
 	//	styles
-	const classes = useStyles.NavButtonRoot({ navActive: navigator === item.id });
+	const classes = useStyles.NavButtonRoot({ navActive: navId === item.id });
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
@@ -144,7 +144,7 @@ const NavButton: React.FC<NavButtonProps> = (props) => {
 			<IconButton
 				className={classes["button"]}
 				//	handlers
-				onClick={props.onClick_navigator}
+				onClick={props.onClick_navId}
 			>
 				{item.faIcon && <FontAwesomeIcon {...item.faIcon} fixedWidth />}
 			</IconButton>
@@ -154,7 +154,7 @@ const NavButton: React.FC<NavButtonProps> = (props) => {
 				<Paper
 					className={classes["label-Paper"]}
 					//	handlers
-					onClick={props.onClick_navigator}
+					onClick={props.onClick_navId}
 					component={ButtonBase}
 				>
 					<Typography>{item.label[lang]}</Typography>

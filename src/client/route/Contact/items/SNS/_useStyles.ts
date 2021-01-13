@@ -133,9 +133,11 @@ export const SingleList = (params: {}) =>
 			},
 			"SingleList-label": {
 				margin: theme.spacing(0, 1),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
 			},
 			"SingleList-id": {
 				margin: theme.spacing(0, 1),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
 			},
 		});
 	})();

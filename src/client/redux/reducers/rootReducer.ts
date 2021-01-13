@@ -13,7 +13,7 @@ export interface Environment {
 	id: string;
 	token: string;
 	lang: keyof EnvTypes.Languages;
-	navigator: string;
+	navId: string;
 	footer: boolean;
 	device: {
 		sizeType: "sp" | "pc";
@@ -23,7 +23,7 @@ const initEnvironment: Environment = {
 	id: localStorage.getItem("id") || "",
 	token: localStorage.getItem("token") || "",
 	lang: "jp",
-	navigator: "",
+	navId: "",
 	footer: false,
 	device: {
 		sizeType: navigator.userAgent.match(/iphone|ipad|ipod|android/i)
@@ -52,12 +52,12 @@ const reducer = (
 	switch (action.type) {
 		/*-*-*-*-* actions **-*-*-*-*/
 		//	update_navigator
-		case RootAction.types.update_navigator:
+		case RootAction.types.update_navId:
 			return {
 				...state,
 				env: {
 					...state.env,
-					navigator: action.payload.navigator,
+					navId: action.payload.navId,
 				},
 			};
 		//

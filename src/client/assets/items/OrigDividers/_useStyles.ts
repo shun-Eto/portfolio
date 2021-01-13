@@ -1,9 +1,4 @@
 import { makeStyles, Theme, createStyles } from "@material-ui/core";
-import {
-	basicStyles,
-	basicColors,
-} from "@src/client/assets/styles/basicStyles";
-import { colorPicker } from "@src/client/assets/styles/origStyles";
 
 /*-*-*-*-* BarCode *-*-*-*-*/
 export const BarCode = (params: { color?: string }) =>

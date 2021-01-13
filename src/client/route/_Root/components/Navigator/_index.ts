@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 import { AppStateProps } from "@src/client/redux/store";
 
 //	actions
-import * as HomeAction from "@src/client/redux/actions/homeAction";
 import * as RootAction from "@src/client/redux/actions/rootAction";
 
 //	reducers
@@ -19,12 +18,12 @@ const mapStateToProps = (state: AppStateProps) => {
 };
 
 /* * * * * dispatch * * * * */
-type DispatchProps = HomeAction.Update_Navigator;
+type DispatchProps = RootAction.Update_NavId;
 const mapDispatchToProps = (dispatch: Dispatch<DispatchProps>) => {
 	return {
 		rootActions: {
-			update_navigator: (navigator: string) => {
-				dispatch(RootAction.update_navigator(navigator));
+			update_navId: (navId: string) => {
+				dispatch(RootAction.update_navId(navId));
 			},
 		},
 	};
