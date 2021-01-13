@@ -3,7 +3,13 @@ import * as React from "react";
 //	components
 
 //	materials
-import { Button, Container, Hidden, TextField } from "@material-ui/core";
+import {
+	Button,
+	Container,
+	Hidden,
+	TextField,
+	Typography,
+} from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //	assets
@@ -74,6 +80,11 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	return (
 		<div className={classes.Item}>
 			<div className={classes["Item-container"]}>
+				{/*-*-*-*-* title *-*-*-*-*/}
+				<div className={`${classes["Item-title"]} ${classes["Item-element"]}`}>
+					<Typography className={classes["title-text"]}>Message</Typography>
+				</div>
+
 				{/*-*-*-*-* name *-*-*-*-*/}
 				<div className={classes["Item-element"]}>
 					<TextField
@@ -82,12 +93,15 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 						label="Name"
 						size="small"
 						color="secondary"
+						InputLabelProps={{
+							classes: { root: classes["element-label"] },
+						}}
 						InputProps={{
 							classes: { root: classes["element-text"] },
 							startAdornment: (
 								<FontAwesomeIcon
 									icon={["fas", "signature"]}
-									className={classes["Item-faIcon"]}
+									className={classes["element-faIcon"]}
 								/>
 							),
 						}}
@@ -102,12 +116,15 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 						label="Email"
 						size="small"
 						color="secondary"
+						InputLabelProps={{
+							classes: { root: classes["element-label"] },
+						}}
 						InputProps={{
 							classes: { root: classes["element-text"] },
 							startAdornment: (
 								<FontAwesomeIcon
 									icon={["fas", "envelope"]}
-									className={classes["Item-faIcon"]}
+									className={classes["element-faIcon"]}
 								/>
 							),
 						}}
@@ -124,6 +141,9 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 						size="small"
 						label="Message"
 						color="secondary"
+						InputLabelProps={{
+							classes: { root: classes["element-label"] },
+						}}
 						InputProps={{
 							classes: {
 								root: `${classes["element-text"]} ${classes["Item-Message-text"]}`,
@@ -131,7 +151,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 							startAdornment: (
 								<FontAwesomeIcon
 									icon={["fas", "pen"]}
-									className={classes["Item-faIcon"]}
+									className={classes["element-faIcon"]}
 								/>
 							),
 						}}
@@ -140,7 +160,11 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 
 				{/*-*-*-*-* submit *-*-*-*-*/}
 				<div className={classes["Item-element"]}>
-					<Button variant="contained" color="secondary">
+					<Button
+						variant="contained"
+						color="secondary"
+						className={classes["submit-btn"]}
+					>
 						Submit
 					</Button>
 				</div>

@@ -73,14 +73,35 @@ export const ItemLg = (params: {}) =>
 			},
 			"element-text": {
 				backgroundColor: "white",
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
 			},
-			"Item-faIcon": {
+			"element-label": {
+				textShadow: origStylesClass["textShadow-color"]("white"),
+			},
+			"element-faIcon": {
 				marginRight: theme.spacing(1),
+			},
+
+			/*-*-*-*-* title *-*-*-*-*/
+			"Item-title": {},
+			"title-text": {
+				fontSize: origStylesClass.fontSizePicker("xl"),
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
+				color: origStylesClass.colorPicker("brandBlack"),
+				textShadow: origStylesClass["textShadow-color"]("white"),
 			},
 
 			/*-*-*-*-* message *-*-*-*-*/
 			"Item-Message-text": {
 				alignItems: "start",
+			},
+
+			/*-*-*-*-* submit *-*-*-*-*/
+			"Item-submit": {},
+			"submit-btn": {
+				fontFamily: origStylesClass.fontFamiPicker("basic"),
+				textTransform: "unset",
+				letterSpacing: 1.2,
 			},
 
 			/*-*-*-*-* image *-*-*-*-*/
@@ -101,7 +122,7 @@ export const ItemLg = (params: {}) =>
 				height: "100%",
 				width: "100%",
 				zIndex: 1,
-				backgroundColor: origStylesClass.colorPicker("brandWhite", 0.3),
+				backgroundColor: origStylesClass.colorPicker("brandWhite", 0.4),
 			},
 		});
 	})();
