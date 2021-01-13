@@ -13,6 +13,7 @@ import Footer from "./components/Footer/_index";
 
 //	route components
 import Home from "@src/client/route/Home/_index";
+import Contact from "@src/client/route/Contact/_index";
 
 //	materials
 import { Container, Divider, Hidden, Toolbar } from "@material-ui/core";
@@ -58,6 +59,9 @@ const Component: React.FC<Props> = (props) => {
 			<Switch>
 				{/*-*-*-*-* Home *-*-*-*-*/}
 				<Route exact path={"/"} component={Home} />
+
+				{/*-*-*-*-* Contact *-*-*-*-*/}
+				<Route exact path={"/contact"} component={Contact} />
 			</Switch>
 		</Root>
 	);
