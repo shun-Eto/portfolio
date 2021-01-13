@@ -75,7 +75,7 @@ const Component: React.FC<Props> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<Slide in={footer} direction="right" unmountOnExit>
+		<Grow in={footer} unmountOnExit>
 			<Toolbar className={classes.Root}>
 				<Container maxWidth="md">
 					<OrigDivider.Mesh color={origStyles.colorPicker("brandBlack", 0.1)} />
@@ -143,7 +143,7 @@ const Component: React.FC<Props> = (props) => {
 					<OrigDivider.Mesh color={origStyles.colorPicker("brandBlack", 0.1)} />
 				</Container>
 			</Toolbar>
-		</Slide>
+		</Grow>
 	);
 };
 

@@ -810,6 +810,62 @@ const colors = {
 			? `rgba(38,50,56 ,1)`
 			: `rgba(38,50,56 ,${opacity})`;
 	},
+	//	teal
+	teal: (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(96,125,139,1)`
+			: `rgba(96,125,139,${opacity})`;
+	},
+	"teal-50": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(224,242,241 ,1)`
+			: `rgba(224,242,241 ,${opacity})`;
+	},
+	"teal-100": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(178,223,219 ,1)`
+			: `rgba(178,223,219 ,${opacity})`;
+	},
+	"teal-200": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(128,203,196 ,1)`
+			: `rgba(128,203,196 ,${opacity})`;
+	},
+	"teal-300": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(77,182,172 ,1)`
+			: `rgba(77,182,172 ,${opacity})`;
+	},
+	"teal-400": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(38,166,154 ,1)`
+			: `rgba(38,166,154 ,${opacity})`;
+	},
+	"teal-500": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(0,150,136 ,1)`
+			: `rgba(0,150,136 ,${opacity})`;
+	},
+	"teal-600": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(0,137,123 ,1)`
+			: `rgba(0,137,123 ,${opacity})`;
+	},
+	"teal-700": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(0,121,107 ,1)`
+			: `rgba(0,121,107 ,${opacity})`;
+	},
+	"teal-800": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(0,105,92 ,1)`
+			: `rgba(0,105,92 ,${opacity})`;
+	},
+	"teal-900": (opacity?: number) => {
+		return typeof opacity !== "number"
+			? `rgba(0,77,64 ,1)`
+			: `rgba(0,77,64 ,${opacity})`;
+	},
 };
 
 /*-*-*-*-* fontFamilies *-*-*-*-*/

@@ -110,10 +110,10 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	//	handleOnScroll_root
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollTop = e.currentTarget.scrollTop;
-		if (scrollTop === 0 && navigator !== "philosophy") {
-			props.onChange_navigator("philosophy");
-		} else if (scrollTop === height && navigator !== "profile") {
-			props.onChange_navigator("profile");
+		if (scrollTop === 0 && navigator !== "message") {
+			props.onChange_navigator("message");
+		} else if (scrollTop === height && navigator !== "sns") {
+			props.onChange_navigator("sns");
 		}
 
 		const end = endHeight <= scrollTop && scrollTop <= height;
@@ -124,7 +124,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	//	anchor
 	React.useEffect(() => {
 		if (anchor.current) setHeight(anchor.current.clientHeight);
-		props.onChange_navigator("philosophy");
+		props.onChange_navigator("message");
 	}, [anchor]);
 	//	navigator
 	React.useEffect(() => {

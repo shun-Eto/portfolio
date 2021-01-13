@@ -3,8 +3,14 @@ import * as React from "react";
 //	components
 
 //	materials
-import { Hidden } from "@material-ui/core";
-import {} from "@fortawesome/react-fontawesome";
+import { ButtonBase, Hidden, Paper, Typography } from "@material-ui/core";
+import {
+	FontAwesomeIcon,
+	FontAwesomeIconProps,
+} from "@fortawesome/react-fontawesome";
+
+//	assets
+import Img_main from "@src/client/assets/images/contact-sns.png";
 
 //	styles
 import * as useStyles from "./_useStyles";
@@ -24,6 +30,7 @@ const Component: React.FC<Props> = (props) => {
 	const {} = props;
 	//	states
 	//	styles
+	const classes = useStyles.Item({});
 
 	/*-*-*-*-* handlers *-*-*-*-*/
 
@@ -32,7 +39,7 @@ const Component: React.FC<Props> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<React.Fragment>
+		<div className={classes.Item} ref={props.anchor}>
 			{/*-*-*-*-* small *-*-*-*-*/}
 			<Hidden smUp>
 				<ItemSm {...comnProps} />
@@ -42,7 +49,7 @@ const Component: React.FC<Props> = (props) => {
 			<Hidden xsDown>
 				<ItemLg {...comnProps} />
 			</Hidden>
-		</React.Fragment>
+		</div>
 	);
 };
 
@@ -65,7 +72,105 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	const classes = useStyles.ItemLg({});
 
 	/*-*-*-*-* component *-*-*-*-*/
-	return <div></div>;
+	return (
+		<div className={classes.Item}>
+			<div className={classes["Item-container"]}>
+				{/* twitter */}
+				<div className={classes["Item-element"]}>
+					<SignleList
+						faIcon={{ icon: ["fab", "twitter"] }}
+						label="Twitter"
+						id="@Sopherre_1111"
+					/>
+				</div>
+
+				{/* instagram */}
+				<div className={classes["Item-element"]}>
+					<SignleList
+						faIcon={{ icon: ["fab", "instagram"] }}
+						label="Instagram"
+						id="@sopherre_1111"
+					/>
+				</div>
+
+				{/* github */}
+				<div className={classes["Item-element"]}>
+					<SignleList
+						faIcon={{ icon: ["fab", "github"] }}
+						label="GitHub"
+						id="@shun-Eto"
+					/>
+				</div>
+
+				{/* github */}
+				<div className={classes["Item-element"]}>
+					<SignleList
+						faIcon={{ icon: ["far", "envelope"] }}
+						label="Email"
+						id="shun.prog0830@gmail.com"
+					/>
+				</div>
+
+				{/* comment */}
+				<div
+					className={`${classes["Item-element"]} ${classes["Item-comment"]}`}
+				>
+					<Typography className={classes["comment-text"]}>
+						お気軽にDMやコンタクトください！
+						<br />
+						共同開発やプログラミングの学習支援もさせて頂いています！
+					</Typography>
+				</div>
+
+				{/*-*-*-*-* image *-*-*-*-*/}
+				<img
+					src={Img_main}
+					alt="main image"
+					className={classes["Item-image"]}
+				/>
+				<span className={classes["image-wrapper"]} />
+			</div>
+		</div>
+	);
+};
+
+interface SignleListProps {
+	faIcon: FontAwesomeIconProps;
+	label: string;
+	id: string;
+}
+const SignleList: React.FC<SignleListProps> = (props) => {
+	/*-*-*-*-* properties *-*-*-*-*/
+	const { faIcon, label, id } = props;
+	//	styles
+	const classes = useStyles.SingleList({});
+
+	/*-*-*-*-* compoent *-*-*-*-*/
+	return (
+		<ButtonBase className={classes["SingleList-btn"]}>
+			<Paper className={classes.SingleList}>
+				{/* fb icon */}
+				<FontAwesomeIcon
+					{...faIcon}
+					fixedWidth
+					size="lg"
+					className={classes["SingleList-fbIcon"]}
+				/>
+
+				{/* label */}
+				<Typography className={classes["SingleList-label"]}>{label}</Typography>
+
+				{/* fa icon */}
+				<FontAwesomeIcon
+					icon={["fas", "angle-double-right"]}
+					className={classes["SingleList-faIcon"]}
+				/>
+
+				{/* id */}
+				<Typography className={classes["SingleList-id"]}>{id}</Typography>
+			</Paper>
+		</ButtonBase>
+	);
 };
 
 /*-*-*-*-* default *-*-*-*-*/

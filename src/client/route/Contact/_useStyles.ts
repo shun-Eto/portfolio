@@ -25,7 +25,12 @@ export const ItemLg = (params: {}) =>
 		const {} = params;
 
 		return createStyles({
-			Item: {},
+			Item: {
+				height: "100%",
+				scrollBehavior: "smooth",
+				padding: theme.spacing(0, 3),
+				...origStylesClass.scrollVisibled({ scrollY: true }),
+			},
 		});
 	})();
 /*

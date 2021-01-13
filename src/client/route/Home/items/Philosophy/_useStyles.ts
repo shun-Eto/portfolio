@@ -65,7 +65,7 @@ export const ItemLg = (params: {}) =>
 				width: "100%",
 				objectFit: "cover",
 				position: "relative",
-				minHeight: "50vh",
+				maxHeight: "45vh",
 			},
 			"container-label": {
 				position: "absolute",
