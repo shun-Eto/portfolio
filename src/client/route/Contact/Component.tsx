@@ -1,16 +1,15 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router";
-import * as H from "history";
 
 //	components
 
-//	item compoentns
-import Philosophy from "./items/Philosophy/Component";
-import Profile from "./items/Profile/Component";
+//	item components
+import Item_Message from "./items/Message/Component";
+import Item_SNS from "./items/SNS/Component";
 
 //	materials
-import { Fade, Hidden } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Hidden } from "@material-ui/core";
+import {} from "@fortawesome/react-fontawesome";
 
 //	actions
 import * as RootAction from "@src/client/redux/actions/rootAction";
@@ -26,7 +25,6 @@ import * as EnvTypes from "@src/types/environment";
 
 /*-*-*-*-* component props *-*-*-*-*/
 interface OwnProps extends RouteComponentProps {
-	history: H.History;
 	root: RootReducer.StateProps;
 	//	actions
 	rootActions: {
@@ -53,8 +51,6 @@ const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* handlers *-*-*-*-*/
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
-
-	/*-*-*-*-* comnProps *-*-*-*-*/
 	const comnProps: ComnProps = {
 		lang,
 		navigator,
@@ -70,28 +66,30 @@ const Component: React.FC<Props> = (props) => {
 		<React.Fragment>
 			{/*-*-*-*-* small *-*-*-*-*/}
 			<Hidden smUp>
-				<HomeSm {...comnProps} />
+				<ItemSm {...comnProps} />
 			</Hidden>
 
 			{/*-*-*-*-* large *-*-*-*-*/}
 			<Hidden xsDown>
-				<HomeLg {...comnProps} />
+				<ItemLg {...comnProps} />
 			</Hidden>
 		</React.Fragment>
 	);
 };
 
-/*-*-*-*-* small Home *-*-*-*-*/
-const HomeSm: React.FC<ComnProps> = (props) => {
+/*-*-*-*-* small *-*-*-*-*/
+const ItemSm: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
 	const {} = props;
+	//	styles
+	const classes = useStyles.ItemSm({});
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return <div></div>;
 };
 
-/*-*-*-*-* large Home *-*-*-*-*/
-const HomeLg: React.FC<ComnProps> = (props) => {
+/*-*-*-*-* large *-*-*-*-*/
+const ItemLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
 	const { navigator, lang } = props;
 	//	states
@@ -103,12 +101,13 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	}, [height, menuCount]);
 	//	anchors
 	const anchor = React.useRef<HTMLDivElement>(null);
-	const anchorPhilosophy = React.useRef<HTMLDivElement>(null);
-	const anchorProfile = React.useRef<HTMLDivElement>(null);
+	const anchorMessage = React.useRef<HTMLDivElement>(null);
+	const anchorSNS = React.useRef<HTMLDivElement>(null);
 	//	styles
-	const classes = useStyles.HomeLg({});
+	const classes = useStyles.ItemLg({});
 
 	/*-*-*-*-* handlers *-*-*-*-*/
+	//	handleOnScroll_root
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
 		const scrollTop = e.currentTarget.scrollTop;
 		if (scrollTop === 0 && navigator !== "philosophy") {
@@ -129,29 +128,22 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	}, [anchor]);
 	//	navigator
 	React.useEffect(() => {
-		if (navigator === "philosophy" && anchorPhilosophy.current) {
-			anchorPhilosophy.current.scrollIntoView(true);
-		} else if (navigator === "profile" && anchorProfile.current) {
-			anchorProfile.current.scrollIntoView(true);
+		if (navigator === "message" && anchorMessage.current) {
+			anchorMessage.current.scrollIntoView(true);
+		} else if (navigator === "sns" && anchorSNS.current) {
+			anchorSNS.current.scrollIntoView(true);
 		}
 	}, [navigator]);
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<Fade in={true}>
-			<div
-				className={classes.Home}
-				ref={anchor}
-				//	handlers
-				onScroll={handleOnScroll_root}
-			>
-				{/* Philosophy */}
-				<Philosophy lang={lang} anchor={anchorPhilosophy} />
+		<div className={classes.Item} ref={anchor} onScroll={handleOnScroll_root}>
+			{/* Philosophy */}
+			<Item_Message lang={lang} anchor={anchorMessage} />
 
-				{/* Profile */}
-				<Profile lang={lang} anchor={anchorProfile} />
-			</div>
-		</Fade>
+			{/* Profile */}
+			<Item_SNS lang={lang} anchor={anchorSNS} />
+		</div>
 	);
 };
 
