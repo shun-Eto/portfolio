@@ -67,7 +67,10 @@ const Component: React.FC<Props> = (props) => {
 	//	handleOnClick_menuItem
 	const handleOnClick_menuItem = (pathname?: string) => {
 		setOpen(false);
-		if (pathname) props.history.push(pathname);
+		if (pathname) {
+			props.history.push(pathname);
+			props.rootActions.update_footer(false);
+		}
 	};
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
