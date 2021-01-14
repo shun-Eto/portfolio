@@ -1,5 +1,6 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router";
+import * as H from "history";
 
 //	components
 
@@ -25,6 +26,7 @@ import * as EnvTypes from "@src/types/environment";
 
 /*-*-*-*-* component props *-*-*-*-*/
 interface OwnProps extends RouteComponentProps {
+	history: H.History;
 	root: RootReducer.StateProps;
 	//	actions
 	rootActions: {
@@ -51,6 +53,8 @@ const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* handlers *-*-*-*-*/
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
+
+	/*-*-*-*-* comnProps *-*-*-*-*/
 	const comnProps: ComnProps = {
 		lang,
 		navId,
@@ -94,6 +98,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	//	states
 	const menuCount = 2;
 	const [height, setHeight] = React.useState(0);
+	const [scrooling, setScrooling] = React.useState(false);
 	//	memo
 	const endHeight = React.useMemo(() => {
 		return height * (menuCount - 1) - 100;
@@ -108,14 +113,20 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* handlers *-*-*-*-*/
 	//	handleOnScroll_root
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
+		if (scrooling) return;
+
 		const scrollTop = e.currentTarget.scrollTop;
-		if (scrollTop === 0 && navId !== "message") {
+		if (scrollTop < 100 && navId !== "message") {
 			props.onChange_navId("message");
-		} else if (scrollTop === height && navId !== "sns") {
+		} else if (
+			height - 100 < scrollTop &&
+			scrollTop < height + 100 &&
+			navId !== "sns"
+		) {
 			props.onChange_navId("sns");
 		}
 
-		const end = endHeight <= scrollTop && scrollTop <= height;
+		const end = endHeight <= scrollTop && scrollTop <= height * (menuCount - 1);
 		props.onChange_footer(end);
 	};
 
@@ -127,11 +138,15 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	}, [anchor]);
 	//	navigator
 	React.useEffect(() => {
+		setScrooling(true);
+
 		if (navId === "message" && anchorMessage.current) {
 			anchorMessage.current.scrollIntoView(true);
 		} else if (navId === "sns" && anchorSNS.current) {
 			anchorSNS.current.scrollIntoView(true);
 		}
+
+		setTimeout(() => setScrooling(false), 500);
 	}, [navId]);
 
 	/*-*-*-*-* component *-*-*-*-*/

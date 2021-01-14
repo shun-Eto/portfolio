@@ -44,7 +44,7 @@ export const ItemLg = (params: {}) =>
 				justifyContent: "center",
 			},
 			"Item-container": {
-				minWidth: "75vw",
+				minWidth: "75%",
 				position: "relative",
 				padding: theme.spacing(4, 6),
 				"&:after": {
@@ -65,7 +65,7 @@ export const ItemLg = (params: {}) =>
 				textAlign: "center",
 				position: "relative",
 				zIndex: 2,
-				maxWidth: "80%",
+				maxWidth: 400,
 				marginTop: theme.spacing(2),
 				marginBottom: theme.spacing(2),
 				marginLeft: "auto",
@@ -113,6 +113,7 @@ export const ItemLg = (params: {}) =>
 				height: "100%",
 				width: "100%",
 				zIndex: 0,
+				objectFit: "cover",
 			},
 			"image-wrapper": {
 				position: "absolute",

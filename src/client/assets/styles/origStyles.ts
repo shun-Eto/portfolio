@@ -973,4 +973,7 @@ export default class {
 		const px = "40px";
 		return `inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color},inset 0 0 ${px} ${color}`;
 	}
+	transition(property: string) {
+		return `${property} 500ms ease-out 0s,-webkit-transform 500ms ease-out 0s`;
+	}
 }
