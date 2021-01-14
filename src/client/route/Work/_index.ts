@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 import { AppStateProps } from "@src/client/redux/store";
 
 //	actions
-import * as RootAction from "@src/client/redux/actions/rootAction";
 
 //	reducers
 
@@ -16,15 +15,9 @@ const mapStateToProps = (state: AppStateProps) => {
 };
 
 /* * * * * dispatch * * * * */
-type DispatchProps = RootAction.Update_NavId;
+type DispatchProps = any | any;
 const mapDispatchToProps = (dispatch: Dispatch<DispatchProps>) => {
-	return {
-		rootActions: {
-			update_navId: (navId: string) => {
-				dispatch(RootAction.update_navId(navId));
-			},
-		},
-	};
+	return {};
 };
 
 /* * * * * default * * * * */

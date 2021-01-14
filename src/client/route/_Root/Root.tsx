@@ -14,9 +14,10 @@ import Footer from "./components/Footer/_index";
 //	route components
 import Home from "@src/client/route/Home/_index";
 import Contact from "@src/client/route/Contact/_index";
+import Work from "@src/client/route/Work/_index";
 
 //	materials
-import { Container, Divider, Hidden, Toolbar } from "@material-ui/core";
+import { Container, Hidden, Toolbar } from "@material-ui/core";
 
 //	modules
 
@@ -59,6 +60,9 @@ const Component: React.FC<Props> = (props) => {
 			<Switch>
 				{/*-*-*-*-* Home *-*-*-*-*/}
 				<Route exact path={"/"} component={Home} />
+
+				{/*-*-*-*-* Work *-*-*-*-*/}
+				<Route exact path={"/work"} component={Work} />
 
 				{/*-*-*-*-* Contact *-*-*-*-*/}
 				<Route exact path={"/contact"} component={Contact} />
@@ -113,7 +117,10 @@ const RootLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
 		<div className={classes.Root}>
+			{/*-*-*-*-* Header *-*-*-*-*/}
 			<Header />
+
+			{/* container */}
 			<Container maxWidth="md" className={classes["container"]}>
 				<Toolbar />
 
@@ -126,6 +133,7 @@ const RootLg: React.FC<ComnProps> = (props) => {
 					<Navigator />
 				</div>
 
+				{/*-*-*-*-* Footer *-*-*-*-*/}
 				<Footer />
 			</Container>
 		</div>

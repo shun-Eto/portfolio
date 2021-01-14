@@ -18,7 +18,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //	actions
-import * as HomeAction from "@src/client/redux/actions/homeAction";
 import * as RootAction from "@src/client/redux/actions/rootAction";
 
 //	reudcers
@@ -62,6 +61,29 @@ const Component: React.FC<Props> = (props) => {
 			faIcon: { icon: ["fas", "user-graduate"] },
 		},
 	];
+	const workNavs: EnvTypes.MenuItem[] = [
+		{
+			id: "app",
+			value: "app",
+			label: { jp: "アプリ開発", en: "App Development" },
+			faIcon: { icon: ["far", "gem"] },
+		},
+		{
+			id: "system",
+			value: "system",
+			label: {
+				jp: "業務システム開発",
+				en: "Business System Development",
+			},
+			faIcon: { icon: ["fas", "desktop"] },
+		},
+		{
+			id: "school",
+			value: "school",
+			label: { jp: "学習支援", en: "学習支援" },
+			faIcon: { icon: ["fas", "school"] },
+		},
+	];
 	const contactNavs: EnvTypes.MenuItem[] = [
 		{
 			id: "message",
@@ -80,6 +102,8 @@ const Component: React.FC<Props> = (props) => {
 		switch (pathname) {
 			case "/":
 				return homeNavs;
+			case "/work":
+				return workNavs;
 			case "/contact":
 				return contactNavs;
 			default:
@@ -157,7 +181,9 @@ const NavButton: React.FC<NavButtonProps> = (props) => {
 					onClick={props.onClick_navId}
 					component={ButtonBase}
 				>
-					<Typography>{item.label[lang]}</Typography>
+					<Typography className={classes["label-Paper-text"]}>
+						{item.label[lang]}
+					</Typography>
 				</Paper>
 			</Zoom>
 		</div>

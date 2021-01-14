@@ -105,6 +105,9 @@ export const NavButtonRoot = (params: { navActive: boolean }) =>
 				backgroundColor: "white",
 				borderRadius: theme.shape.borderRadius,
 			},
+			"label-Paper-text": {
+				whiteSpace: "pre",
+			},
 		});
 	})();
 

@@ -8,7 +8,7 @@ import Item_Message from "./items/Message/Component";
 import Item_SNS from "./items/SNS/Component";
 
 //	materials
-import { Hidden } from "@material-ui/core";
+import { Fade, Hidden } from "@material-ui/core";
 import {} from "@fortawesome/react-fontawesome";
 
 //	actions
@@ -136,13 +136,15 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
-		<div className={classes.Item} ref={anchor} onScroll={handleOnScroll_root}>
-			{/* Philosophy */}
-			<Item_Message lang={lang} anchor={anchorMessage} />
+		<Fade in={true}>
+			<div className={classes.Item} ref={anchor} onScroll={handleOnScroll_root}>
+				{/* Philosophy */}
+				<Item_Message lang={lang} anchor={anchorMessage} />
 
-			{/* Profile */}
-			<Item_SNS lang={lang} anchor={anchorSNS} />
-		</div>
+				{/* Profile */}
+				<Item_SNS lang={lang} anchor={anchorSNS} />
+			</div>
+		</Fade>
 	);
 };
 
