@@ -24,6 +24,7 @@ export const Root = (params: { itemCount: number }) =>
 				right: "0",
 				top: "50%",
 				transform: "translate(50% , -50%)",
+				zIndex: 1000,
 			},
 
 			circle: {

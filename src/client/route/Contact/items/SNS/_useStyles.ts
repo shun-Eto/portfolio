@@ -93,6 +93,7 @@ export const ItemLg = (params: {}) =>
 				height: "100%",
 				width: "100%",
 				zIndex: 0,
+				objectFit: "cover",
 			},
 			"image-wrapper": {
 				position: "absolute",
@@ -120,6 +121,7 @@ export const SingleList = (params: {}) =>
 				width: "100%",
 				flexWrap: "wrap",
 				justifyContent: "center",
+				maxWidth: 400,
 			},
 			"SingleList-btn": {
 				width: "100%",

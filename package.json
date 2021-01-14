@@ -48,6 +48,7 @@
 		"@types/react-swipe": "^6.0.0",
 		"@types/react-swipeable-views": "^0.13.0",
 		"@types/request": "^2.48.4",
+		"@types/smoothscroll-polyfill": "^0.3.1",
 		"@types/socket.io": "^2.1.8",
 		"@types/socket.io-client": "^1.4.33",
 		"app-root-path": "^3.0.0",

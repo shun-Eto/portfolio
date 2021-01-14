@@ -52,6 +52,7 @@ export const RootLg = (params: {}) =>
 				flexGrow: 1,
 				position: "relative",
 				overflow: "hidden",
+				flexBasis: "100%",
 			},
 		});
 	})();

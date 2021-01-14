@@ -96,6 +96,7 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	//	states
 	const menuCount = 2;
 	const [height, setHeight] = React.useState(0);
+	const [scrooling, setScrooling] = React.useState(false);
 	//	memo
 	const endHeight = React.useMemo(() => {
 		return height * (menuCount - 1) - 100;
@@ -109,14 +110,20 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 
 	/*-*-*-*-* handlers *-*-*-*-*/
 	const handleOnScroll_root = (e: React.UIEvent<HTMLDivElement>) => {
+		if (scrooling) return;
+
 		const scrollTop = e.currentTarget.scrollTop;
-		if (scrollTop === 0 && navId !== "philosophy") {
+		if (scrollTop < 100 && navId !== "philosophy") {
 			props.onChange_navId("philosophy");
-		} else if (scrollTop === height && navId !== "profile") {
+		} else if (
+			height - 100 < scrollTop &&
+			scrollTop < height + 100 &&
+			navId !== "profile"
+		) {
 			props.onChange_navId("profile");
 		}
 
-		const end = endHeight <= scrollTop && scrollTop <= height;
+		const end = endHeight <= scrollTop && scrollTop <= height * (menuCount - 1);
 		props.onChange_footer(end);
 	};
 
@@ -128,11 +135,15 @@ const HomeLg: React.FC<ComnProps> = (props) => {
 	}, [anchor]);
 	//	navId
 	React.useEffect(() => {
+		setScrooling(true);
+
 		if (navId === "philosophy" && anchorPhilosophy.current) {
 			anchorPhilosophy.current.scrollIntoView(true);
 		} else if (navId === "profile" && anchorProfile.current) {
 			anchorProfile.current.scrollIntoView(true);
 		}
+
+		setTimeout(() => setScrooling(false), 500);
 	}, [navId]);
 
 	/*-*-*-*-* component *-*-*-*-*/

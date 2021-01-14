@@ -47,7 +47,6 @@ const Component: React.FC<Props> = (props) => {
 	const { root } = props;
 	const { lang } = root.env;
 	//	classes
-
 	//	styles
 
 	/*-*-*-*-* handlers *-*-*-*-*/

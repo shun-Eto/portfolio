@@ -63,8 +63,8 @@ const Component: React.FC<Props> = (props) => {
 	];
 	const workNavs: EnvTypes.MenuItem[] = [
 		{
-			id: "app",
-			value: "app",
+			id: "application",
+			value: "application",
 			label: { jp: "アプリ開発", en: "App Development" },
 			faIcon: { icon: ["far", "gem"] },
 		},
