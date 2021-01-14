@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSnackbar } from "notistack";
 
 //	components
 
@@ -18,16 +19,30 @@ import * as useStyles from "./_useStyles";
 //	types
 import * as EnvTypes from "@src/types/environment";
 
+//	classes
+const selfClass = new (class {
+	snackLabels = {
+		mail_clipboard: {
+			success: {
+				jp: "メールアドレスをコピーしました。",
+				en: "Copied email adress.",
+			},
+		},
+	};
+})();
+
 /*-*-*-*-* component props *-*-*-*-*/
 interface ComponentProps {
 	lang: keyof EnvTypes.Languages;
 	anchor: React.RefObject<HTMLDivElement>;
 }
 type Props = ComponentProps;
-interface ComnProps {}
+interface ComnProps {
+	lang: keyof EnvTypes.Languages;
+}
 const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const {} = props;
+	const { lang } = props;
 	//	states
 	//	styles
 	const classes = useStyles.Item({});
@@ -35,7 +50,7 @@ const Component: React.FC<Props> = (props) => {
 	/*-*-*-*-* handlers *-*-*-*-*/
 
 	/*-*-*-*-* lifeCycles *-*-*-*-*/
-	const comnProps: ComnProps = {};
+	const comnProps: ComnProps = { lang };
 
 	/*-*-*-*-* component *-*-*-*-*/
 	return (
@@ -67,7 +82,7 @@ const ItemSm: React.FC<ComnProps> = (props) => {
 /*-*-*-*-* large *-*-*-*-*/
 const ItemLg: React.FC<ComnProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const {} = props;
+	const { lang } = props;
 	//	styles
 	const classes = useStyles.ItemLg({});
 
@@ -78,6 +93,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 				{/* twitter */}
 				<div className={classes["Item-element"]}>
 					<SignleList
+						lang={lang}
 						faIcon={{ icon: ["fab", "twitter"] }}
 						label="Twitter"
 						id="Sopherre_1111"
@@ -88,6 +104,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 				{/* instagram */}
 				<div className={classes["Item-element"]}>
 					<SignleList
+						lang={lang}
 						faIcon={{ icon: ["fab", "instagram"] }}
 						label="Instagram"
 						id="sopherre_1111"
@@ -98,6 +115,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 				{/* github */}
 				<div className={classes["Item-element"]}>
 					<SignleList
+						lang={lang}
 						faIcon={{ icon: ["fab", "github"] }}
 						label="GitHub"
 						id="shun-Eto"
@@ -108,6 +126,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 				{/* github */}
 				<div className={classes["Item-element"]}>
 					<SignleList
+						lang={lang}
 						faIcon={{ icon: ["far", "envelope"] }}
 						label="Email"
 						id="shun.prog0830@gmail.com"
@@ -138,7 +157,9 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	);
 };
 
+/*-*-*-*-* SignleList *-*-*-*-*/
 interface SignleListProps {
+	lang: keyof EnvTypes.Languages;
 	faIcon: FontAwesomeIconProps;
 	label: string;
 	id: string;
@@ -146,7 +167,12 @@ interface SignleListProps {
 }
 const SignleList: React.FC<SignleListProps> = (props) => {
 	/*-*-*-*-* properties *-*-*-*-*/
-	const { faIcon, label, id, type } = props;
+	const { lang, faIcon, label, id, type } = props;
+	//	states
+	//	snackbar
+	const snackLabels = selfClass.snackLabels;
+	const snack = useSnackbar().enqueueSnackbar;
+	//	memo
 	const labelId = React.useMemo(() => {
 		switch (type) {
 			case "twitter":
@@ -167,6 +193,12 @@ const SignleList: React.FC<SignleListProps> = (props) => {
 			case "email":
 				link.setAttribute("href", `mailto:${id}`);
 				link.click();
+				navigator.clipboard.writeText(id).then((val) => {
+					console.log(val);
+					snack(snackLabels.mail_clipboard.success[lang], {
+						variant: "success",
+					});
+				});
 				break;
 			case "twitter":
 				link.setAttribute("href", `https://twitter.com/${id}`);
