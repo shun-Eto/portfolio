@@ -65,7 +65,7 @@ const Component: React.FC<Props> = (props) => {
 			img: Img_Sophic,
 			description: {
 				jp:
-					"カードゲームを通して論理的思考を鍛えるアプリです。大人から大人まで楽しめる仕様になっています。",
+					"カードゲームを通して論理的思考を鍛えるアプリです。大人から子供まで楽しめる仕様になっています。",
 				en: "description",
 			},
 			link: "https://sophic.sopherre.com",
@@ -121,7 +121,7 @@ const ItemLg: React.FC<ComnProps> = (props) => {
 	return (
 		<div className={classes.Item}>
 			<div className={classes["Item-container"]}>
-				<Typography className={classes["Item-title"]}>アプリ開発</Typography>
+				<Typography className={classes["Item-title"]}>◉アプリ開発</Typography>
 
 				{/*-*-*-*-* Sopherre *-*-*-*-*/}
 				{applications.map((app, index) => (
